@@ -1,0 +1,11 @@
+.display-4{
+    font-size: 35px;
+}
+.form-control{
+margin-top: 4px;
+}
+.form-row {
+       
+    margin-right: auto;
+    margin-left: auto;
+}

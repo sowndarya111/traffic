@@ -1,0 +1,26 @@
+form{
+  width: 420px;
+  margin: 1px auto;
+ 
+}
+h3 { width:100%; 
+  text-align:center; 
+  border-bottom: 2px solid rgb(192, 191, 191); 
+  line-height:0.1em; margin:10px 0 50px; } 
+h3 span {
+   background:#fff; 
+  padding:0 10px; 
+  color:rgb(192, 191, 191) ;
+}
+button{
+  font-size: 15px;
+}
+
+.error{
+  color: red;
+}
+.crdbkground{
+  background-color: #ebebeb;
+   padding:70px;
+   border-radius: 10px;
+}

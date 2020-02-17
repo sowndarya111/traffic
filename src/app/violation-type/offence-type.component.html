@@ -1,0 +1,99 @@
+<form style="margin-top:30px" [formGroup]="violationTypeForm" (ngSubmit)="onSubmit()" class="card p-3">
+  <div class="form-row ">
+    <div class="col-2">
+      <h5 class="text-secondary text-success display">Violation Type</h5>
+    </div>
+    <div class="col-4">
+      <input type="text" (keypress)="keyPress($event)"   class="form-control" formControlName="name" placeholder="Violation Type"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Violation Type is required</div>
+        <div *ngIf="f.name.errors.pattern">Aplhabet is required
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="col-4">
+
+      <button class="btn btn-info">Add</button>
+
+    </div>
+  </div>
+</form>
+<!-- loader -->
+<div *ngIf="loading else loaded">
+    <div class="d-flex justify-content-center text-info">
+      <div class="spinner-border" role="status">
+      </div>
+    </div>
+  </div>
+
+
+<table class="table table-hover bg-light mt-3">
+  <thead>
+    <tr class="text-secondary">
+      <th>ViolationType</th>
+      <th>ViolationTypeId</th>
+      <th>Edit</th>
+
+      <th>Delete</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let view of getViolationTypes">
+      <td>{{view.name}}</td>
+      <td>{{view.violationTypeId}}</td>
+      <td><button type="button" class="btn btn-info" (click)="edit(view)" data-toggle="modal"
+          data-target="#myModal">Edit</button>
+      </td>
+      <td><button type="button" class="btn btn-danger" (click)="delete(view)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+      <h5 class="modal-title text-secondary">Violation Type Update</h5>
+        <button type="button" class="close" data-dismiss="modal" #closeBtn>&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="myform" (ngSubmit)="upDate(myform.value)">
+          <div class="row">
+            <div class="col-sm-8">
+              <label>Violation Type Id</label>
+              <input type="text" placeholder="violationTypeId" formControlName="violationTypeId" class="form-control"
+                name="violationTypeId" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <label>Violation Type</label>
+              <input type="text" placeholder="name" (keypress)="keyPress($event)" formControlName="name" class="form-control" name="name">
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-8">
+              <label></label>
+              <button class="btn btn-info">Update</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+p {
+    margin-top: 10px; 
+    margin-bottom: 1rem;
+    font-size: 28px;
+    color: #63a7f1;
+    /* margin-right: auto; */
+    margin-left: 15px;
+}
+.navbar {
+  
+   padding: 0px; 
+}
+.button {
+  color: white;
+  display: inline-block; 
+  position: relative;
+}
+
+.button__badge {
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+ 
+  padding: 1px 3px;
+  font-size: 10px;
+  
+  position: absolute; 
+  top: 0;
+  right: 0;
+}

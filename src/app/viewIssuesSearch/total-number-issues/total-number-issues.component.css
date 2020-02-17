@@ -1,0 +1,25 @@
+.display-4{
+  font-size: 35px;
+}
+.img-hover-zoom {
+    height: auto; 
+    
+    overflow: hidden; 
+  }
+  
+  
+  .img-hover-zoom img {
+    transition: transform .5s ease;
+  }
+  
+  .img-hover-zoom:hover img {
+    transform: scale(1.9);
+  }
+  .form-row {
+       
+    margin-right: auto;
+    margin-left: auto;
+}
+.form-control{
+  margin-top: 4px;
+  }

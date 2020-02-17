@@ -1,0 +1,122 @@
+<div class="card" style="margin-top: 20px;">
+  <h5 class="card-header text-success">Create Reward Points</h5>
+  <div class="card-body ">
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group col-4">
+        <label>ViolationType</label>
+
+        <select class="form-select" formControlName="violationType" [ngClass]="{ 'is-invalid': submitted && f.violationType.errors }"
+        [(ngModel)]='selectedDepartments' (ngModelChange)='updateSelectedDepartments($event)'class="form-control">
+          <option value="0" selected disabled> Select Violation Type </option>
+
+          <option *ngFor="let item of getViolationTypes" [ngValue]="item">
+            {{item.name}}
+          </option>
+
+        </select>
+        <div *ngIf="submitted && f.violationType.errors" class="invalid-feedback">
+          <div *ngIf="f.violationType.errors.required" class="errorfs">violationType is required</div>
+        </div>
+      </div>
+
+      <div class="form-group col-4">
+        <label>Violation ID</label>
+        <input type="text" formControlName="violationTypeId" class="form-control"
+          [ngModel]="createViolation" disabled placeholder="ViolationTypeId" [ngClass]="{ 'is-invalid': submitted && f.violationTypeId.errors }" />
+          <div *ngIf="submitted && f.violationTypeId.errors" class="invalid-feedback">
+            <div *ngIf="f.violationTypeId.errors.required" class="errorfs">violationTypeId is required</div>
+          </div>
+      </div>
+      <div class="form-group col-4">
+        <label>Points</label>
+        <input appMobileNumber type="text" formControlName="points" class="form-control" placeholder="Reward Points"
+          required="true" [ngClass]="{ 'is-invalid': submitted && f.points.errors }" />
+        <div *ngIf="submitted && f.points.errors" class="invalid-feedback">
+          <div *ngIf="f.points.errors.required" class="errorfs">points is required</div>
+        </div>
+
+      </div>
+
+      <div class="form-group col-4">
+        <button class="btn btn-primary mr-1">Update</button>&nbsp;
+        <!-- <button class="btn btn-secondary mr-1" (click)="reset()">Reset</button> -->
+      </div>
+
+    </form>
+    
+
+  </div>
+</div>
+<div *ngIf="loading else loaded">
+  <div class="d-flex justify-content-center text-info">
+    <div class="spinner-border" role="status">
+    </div>
+  </div>
+</div>
+<table class="table table-hover bg-light mt-3">
+  <thead>
+    <tr class="text-secondary">
+      <th>Violation Type</th>
+      <th>ViolationTypeId</th>
+      <th>points</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let view of getBaseRewards">
+      <td>{{view.violationType}}</td>
+      <td>{{view.violationTypeId}}</td>
+      <td>{{view.points}}</td>
+      <td><button type="button" class="btn btn-info" (click)="edit(view)" data-toggle="modal"
+          data-target="#myModal">Edit</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="delete(view)">Delete</button></td>
+
+
+      <!-- <td><button class="btn btn-info">Details</button></td> -->
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title text-secondary">Reward Points Update</h5>
+        <button type="button" class="close" data-dismiss="modal" #closeBtn>&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="myform" (ngSubmit)="upDate(myform.value)">
+          <div class="row">
+            <div class="col-sm-8">
+              <label>Points</label>
+              <input type="text" appMobileNumber formControlName="points" placeholder="points" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <label>Reward Id</label>
+              <input type="text" formControlName="rewardId" placeholder="reward Id" class="form-control" disabled>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-8">
+              <label></label>
+              <button class="btn btn-info">Update</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
